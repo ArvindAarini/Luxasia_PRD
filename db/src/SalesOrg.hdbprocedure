@@ -1,0 +1,25 @@
+PROCEDURE "SalesOrg"( )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+    -- DECLARE p_date = currentdate();
+
+    -- IF substring(p_vkorg,3,2) ='99'
+    -- THEN
+    --     SELECT * from "Salesorg"
+    --         (placeholder."$$IP_DATE$$"=>'p_date', 
+    --         placeholder."$$IP_WERKS$$"=>'p_werks', 
+    --         placeholder."$$IP_VKORG$$"=>'p_vkorg', 
+    --         placeholder."$$IP_VTWEG$$"=>'p_vtweg')
+    --         GROUP BY "MATNR", "MAKTX", "BRAND_ID", "VRKME", "LGORT", "KMEIN", "KONWA", "MRART", "MEINS", "EAN11","WERKS","LABST","KBETR","VKORG";
+    -- ELSE
+    --     SELECT * from "Salesorg_Zref"
+    --     (placeholder."$$IP_DATE$$"=>'p_vtweg', 
+    --     placeholder."$$IP_WERKS$$"=>'p_werks', 
+    --     placeholder."$$IP_VKORG$$"=>'p_vkorg', 
+    --     placeholder."$$IP_VTWEG$$"=>'p_vtweg')
+    -- GROUP BY "MATNR", "MAKTX", "BRAND_ID", "EAN11", "MEINS", "MRART", "VRKME", "REF_SALES_ORG", "LGORT", "KMEIN","WERKS", "KONWA","LABST","KBETR";
+    -- END IF;
+END
