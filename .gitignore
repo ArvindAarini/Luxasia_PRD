@@ -37,4 +37,4 @@ mta_archives/
 gen/db/.env
 # auto generated wildcard
 db/.env
-
+core
