@@ -2,5 +2,7 @@
   "src/gen/**/*.hdbview",
   "src/gen/**/*.hdbindex",
   "src/gen/**/*.hdbconstraint",
-  "src/Views/**/*.hdbcalculationview"
+  "src/Views/**/*.hdbcalculationview",
+  "src/**/*.hdbprocedure",
+  "src/JOBS/**/*.hdbschedulerjob"
 ]

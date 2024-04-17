@@ -44,8 +44,8 @@
   <DataSource id="KONP$$$$KONP$$">
     <resourceUri>KONP</resourceUri>
   </DataSource>
-  <DataSource id="ZSDR_PS_CE_DV$$$$ZSDR_PS_CE_DV$$">
-    <resourceUri>ZSDR_PS_CE_DV</resourceUri>
+  <DataSource id="ZSDR_PS_CE_DV_Load">
+    <resourceUri>ZSDR_PS_CE_DV_Load</resourceUri>
   </DataSource>
   <DataSource id="MAKT$$$$MAKT$$">
     <resourceUri>MAKT</resourceUri>
@@ -167,7 +167,7 @@
       <viewAttribute id="EAN11"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="ZSDR_PS_CE_DV$$$$ZSDR_PS_CE_DV$$">
+    <input node="ZSDR_PS_CE_DV_Load">
       <mapping xsi:type="Calculation:AttributeMapping" target="mMEINS" source="MEINE"/>
     </input>
     <filter>&quot;WERKS&quot;='$$IP_WERKS$$' and &quot;LABST&quot;&gt;0</filter>
@@ -703,27 +703,9 @@ else &quot;mMEINE&quot; END</formula>
     <shape modelObjectName="MARA_MARD_MAKT_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="250"/>
-    </shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape>
+    </shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape>
     <shape modelObjectName="Join_6" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="620" y="30"/>
-      <rectangleSize width="250"/>
-    </shape>
-  
-  
-    <shape expanded="true" modelObjectName="MARA_MARD_MAKT" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="512" y="536"/>
-      <rectangleSize height="30" width="200"/>
-    </shape>
-    <shape modelObjectName="Projection_1" modelObjectNameSpace="MARA_MARD_MAKT" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MARA_MARD_MAKT">
-      <upperLeftCorner x="1199" y="107"/>
-      <rectangleSize width="136.0234375"/>
-    </shape>
-    <shape modelObjectName="MAKT" modelObjectNameSpace="MARA_MARD_MAKT" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MARA_MARD_MAKT">
-      <upperLeftCorner x="727" y="79"/>
-      <rectangleSize width="125.1123046875"/>
-    </shape>
-    <shape modelObjectName="Join_8" modelObjectNameSpace="MARA_MARD_MAKT" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MARA_MARD_MAKT">
-      <upperLeftCorner x="985" y="30"/>
       <rectangleSize width="250"/>
     </shape>
     <shape expanded="true" modelObjectName="NonEquiJoin_1" modelObjectNameSpace="CalculationView">
@@ -737,6 +719,24 @@ else &quot;mMEINE&quot; END</formula>
     <shape modelObjectName="Join_3" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="620" y="30"/>
       <rectangleSize width="151"/>
+    </shape>
+  
+  
+    <shape expanded="true" modelObjectName="MARA_MARD_MAKT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="512" y="536"/>
+      <rectangleSize height="30" width="200"/>
+    </shape>
+    <shape modelObjectName="MAKT" modelObjectNameSpace="MARA_MARD_MAKT" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MARA_MARD_MAKT">
+      <upperLeftCorner x="727" y="79"/>
+      <rectangleSize width="125"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="MARA_MARD_MAKT" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MARA_MARD_MAKT">
+      <upperLeftCorner x="1199" y="107"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="Join_8" modelObjectNameSpace="MARA_MARD_MAKT" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MARA_MARD_MAKT">
+      <upperLeftCorner x="985" y="30"/>
+      <rectangleSize width="250"/>
     </shape></shapes>
 </layout>
 </Calculation:scenario>

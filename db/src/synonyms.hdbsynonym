@@ -48,5 +48,10 @@
     "target": {
       "object": "Product_Cost"
     }
+  },
+  "STORES_ZSDR_PS_CE_DV_LOAD": {
+    "target": {
+      "object": "ZSDR_PS_CE_DV_Load"
+    }
   }
 }

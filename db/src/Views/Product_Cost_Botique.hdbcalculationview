@@ -44,8 +44,8 @@
   <DataSource id="KONP$$$$KONP$$">
     <resourceUri>KONP</resourceUri>
   </DataSource>
-  <DataSource id="ZSDR_PS_CE_DV$$$$ZSDR_PS_CE_DV$$">
-    <resourceUri>ZSDR_PS_CE_DV</resourceUri>
+  <DataSource id="ZSDR_PS_CE_DV_Load">
+    <resourceUri>ZSDR_PS_CE_DV_Load</resourceUri>
   </DataSource>
   <DataSource id="MAKT$$$$MAKT$$">
     <resourceUri>MAKT</resourceUri>
@@ -164,7 +164,7 @@
       <viewAttribute id="EAN11"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="ZSDR_PS_CE_DV$$$$ZSDR_PS_CE_DV$$">
+    <input node="ZSDR_PS_CE_DV_Load">
       <mapping xsi:type="Calculation:AttributeMapping" target="mMEINS" source="MEINE"/>
     </input>
     <filter>&quot;WERKS&quot;='$$IP_WERKS$$' and &quot;LABST&quot;&gt;0</filter>
@@ -584,7 +584,7 @@ else &quot;mMEINE&quot; END</formula>
     <shape modelObjectName="MARA_MARD_MAKT_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="250"/>
-    </shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape>
+    </shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape>
     <shape modelObjectName="Join_6" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="620" y="30"/>
       <rectangleSize width="250"/>

@@ -4,8 +4,8 @@
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="ZSDR_PS_CE_DV">
-    <resourceUri>ZSDR_PS_CE_DV</resourceUri>
+  <DataSource id="ZSDR_PS_CE_DV_Load">
+    <resourceUri>ZSDR_PS_CE_DV_Load</resourceUri>
   </DataSource>
   <DataSource id="WRF_BRANDS_T">
     <resourceUri>WRF_BRANDS_T</resourceUri>
@@ -20,7 +20,7 @@
       <viewAttribute id="STORE_ID"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="ZSDR_PS_CE_DV">
+    <input node="ZSDR_PS_CE_DV_Load">
       <mapping xsi:type="Calculation:AttributeMapping" target="STORE_ID" source="WERKS"/>
     </input>
   </calculationView>
