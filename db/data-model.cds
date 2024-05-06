@@ -229,3 +229,16 @@ entity Product_Cost(IP_WERKS:String(4),IP_BRAND_ID:String(18)){
         VKORG        : String(4);
         KMEIN        : String(3)
 }
+@cds.persistence.calcview
+@cds.persistence.exists
+entity Product_StorageUnit(IP_WERKS : String(4), IP_LGORT : String(4)) {
+    key ARTICLENO    : String(18);
+        STORAGELOC        : String(4);
+        ArticleDesc  : String(40);
+        StoreId      : String(4);
+        UOM          : String(3);
+        Barcode      : String(18);
+        Price        : Decimal(11, 2);
+        ArticleType  : String(4);
+        AvailableQty : Decimal(13, 3);
+}

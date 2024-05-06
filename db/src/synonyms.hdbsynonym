@@ -53,5 +53,10 @@
     "target": {
       "object": "ZSDR_PS_CE_DV_Load"
     }
+  },
+  "PRODUCT_STORAGEUNIT": {
+    "target": {
+      "object": "Product_StorageUnit"
+    }
   }
 }

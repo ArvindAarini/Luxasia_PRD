@@ -2,6 +2,7 @@ using {Stores_Brands as Luxasia} from '../db/Stores_Brands';
 using {stores as ss} from '../db/data-model';
 using Brands as _Brands from '../db/data-model';
 using Product_Cost from '../db/data-model';
+using Product_StorageUnit from '../db/data-model';
 
 @requires: 'authenticated-user'
 
@@ -22,9 +23,15 @@ service LuxasiaSB @(path: '/luxasia/oDataV4') {
     @readonly
     entity Brands        as projection on _Brands;
     @readonly
-    
     entity ProductCost(IP_WERKS: String(4),IP_BRAND_ID:String(18)) as
     select from Product_Cost (IP_WERKS: :IP_WERKS , IP_BRAND_ID: :IP_BRAND_ID)
+        {
+            *
+        };
+
+    @readonly
+    entity ProductStorageUnit(IP_WERKS: String(4),IP_LGORT:String(4)) as
+    select from Product_StorageUnit (IP_WERKS: :IP_WERKS , IP_LGORT: :IP_LGORT)
         {
             *
         };
