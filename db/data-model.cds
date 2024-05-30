@@ -210,7 +210,7 @@ entity Brands{
 @cds.persistence.exists
 entity Product_Cost(IP_WERKS:String(4),IP_BRAND_ID:String(18)){
     key ARTICLENO    : String(18);
-        Stloc        : String(4);
+    key Stloc        : String(4);
         ArticleDesc  : String(40);
         StoreId      : String(4);
         UOM          : String(3);
@@ -233,7 +233,7 @@ entity Product_Cost(IP_WERKS:String(4),IP_BRAND_ID:String(18)){
 @cds.persistence.exists
 entity Product_StorageUnit(IP_WERKS : String(4), IP_LGORT : String(4)) {
     key ARTICLENO    : String(18);
-        STORAGELOC        : String(4);
+    key STORAGELOC        : String(4);
         ArticleDesc  : String(40);
         StoreId      : String(4);
         UOM          : String(3);
