@@ -1,5 +1,5 @@
 _schema-version: '3.1'
-ID: Luxasia_CAP_PR
+ID: Luxasia_CAP
 version: 1.0.0
 description: "A simple CAP project."
 parameters:
@@ -10,7 +10,7 @@ build-parameters:
       commands:
         - npx -p @sap/cds-dk cds build --production
 modules:
-  - name: Luxasia_CAP_PR-srv
+  - name: Luxasia_CAP-srv
     type: nodejs
     path: gen/srv
     parameters:
@@ -22,32 +22,32 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: Luxasia_CAP_PR_HDI
-      - name: Luxasia_CAP_PR_XSUAA
+      - name: Luxasia_CAP_HDI
+      - name: Luxasia_CAP_XSUAA
 
-  - name: Luxasia_CAP_PR-db-deployer
+  - name: Luxasia_CAP-db-deployer
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: Luxasia_CAP_PR_HDI
+      - name: Luxasia_CAP_HDI
         properties:
            TARGET_CONTAINER: ~{hdi-service-name}
       - name: UPS_Luxasia
 
 resources:
-  - name: Luxasia_CAP_PR_HDI
+  - name: Luxasia_CAP_HDI
     type: com.sap.xs.hdi-container
     parameters:
-      service-name: Luxasia_CAP_PR_HDI
+      service-name: Luxasia_CAP_HDI
       config:
-        schema: Luxasia_CAP_PR
+        schema: Luxasia_CAP
         makeUniqueName: false
     properties:
       hdi-service-name: ${service-name}
 
-  - name: Luxasia_CAP_PR_XSUAA
+  - name: Luxasia_CAP_XSUAA
     type: org.cloudfoundry.existing-service
     parameters:
       path: ./xs-security.json

@@ -58,5 +58,10 @@
     "target": {
       "object": "Product_StorageUnit"
     }
+  },
+  "PURCHASE_ORDER": {
+    "target": {
+      "object": "Purchase_Order"
+    }
   }
 }
