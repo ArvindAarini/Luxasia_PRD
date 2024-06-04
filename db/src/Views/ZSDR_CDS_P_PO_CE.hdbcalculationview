@@ -23,6 +23,14 @@
       <selection multiLine="false" type="SingleValue"/>
     </variableProperties>
   </variable>
+
+  <variable id="IP_SUPP_WERKS" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="4" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
 </localVariables>
 <variableMappings/>
 <dataSources>
@@ -57,7 +65,7 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="ZSDR_PS_CE_DV_Load"/>
-    <filter>&quot;WERKS&quot;='$$IP_WERKS$$' and &quot;LABST&quot;&gt;0 and 
+    <filter>&quot;WERKS&quot;='$$IP_SUPP_WERKS$$' and &quot;LABST&quot;&gt;0 and 
 &quot;LGORT&quot;='$$IP_LGORT$$'</filter>
   </calculationView>
   <calculationView xsi:type="Calculation:ProjectionView" id="MAKT" filterExpressionLanguage="SQL">
@@ -93,7 +101,45 @@
     <input node="T001W"/>
     <filter>&quot;WERKS&quot; = '$$IP_WERKS$$'</filter>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_1" joinType="inner">
+  <calculationView xsi:type="Calculation:JoinView" id="MARA_MARD_MAKT" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="BRAND_ID"/>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="LGORT"/>
+      <viewAttribute id="LABST" aggregationType="sum"/>
+      <viewAttribute id="ERSDA"/>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="MAKTX"/>
+      <viewAttribute id="MAKTG"/>
+      <viewAttribute id="MRART"/>
+      <viewAttribute id="MEINE"/>
+      <viewAttribute id="EAN11"/>
+      <viewAttribute hidden="true" id="JOIN$MATNR$MATNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MAKT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAKTX" source="MAKTX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAKTG" source="MAKTG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+    </input>
+    <input node="ZSDR_PS_CE_DV">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BRAND_ID" source="BRAND_ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LABST" source="LABST"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ERSDA" source="ERSDA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MRART" source="MRART"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MEINE" source="MEINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+    </input>
+    <joinAttribute name="JOIN$MATNR$MATNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" joinType="inner">
     <viewAttributes>
       <viewAttribute id="MANDT"/>
       <viewAttribute id="MATNR"/>
@@ -118,83 +164,7 @@
     </input>
     <joinAttribute name="JOIN$VKORG$VKORG"/>
   </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="MARA_MARD_MAKT_1" joinType="inner" multiJoinNode="MARA_MARD_MAKT" multiJoinCentralTable="ZSDR_PS_CE_DV" multiJoinOrder="Outside In">
-    <viewAttributes>
-      <viewAttribute id="MANDT"/>
-      <viewAttribute id="MATNR"/>
-      <viewAttribute id="BRAND_ID"/>
-      <viewAttribute id="WERKS"/>
-      <viewAttribute id="LGORT"/>
-      <viewAttribute id="LABST" aggregationType="sum"/>
-      <viewAttribute id="ERSDA"/>
-      <viewAttribute id="MRART"/>
-      <viewAttribute id="MEINE"/>
-      <viewAttribute id="EAN11"/>
-      <viewAttribute id="VKORG"/>
-      <viewAttribute hidden="true" id="JOIN$WERKS$WERKS"/>
-    </viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="ZSDR_PS_CE_DV">
-      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="BRAND_ID" source="BRAND_ID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="LABST" source="LABST"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ERSDA" source="ERSDA"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MRART" source="MRART"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MEINE" source="MEINE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$WERKS" source="WERKS"/>
-    </input>
-    <input node="Projection_1">
-      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$WERKS" source="WERKS"/>
-    </input>
-    <joinAttribute name="JOIN$WERKS$WERKS"/>
-  </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="MARA_MARD_MAKT_2" cardinality="CN_N" joinType="leftOuter" multiJoinNode="MARA_MARD_MAKT" multiJoinCentralTable="ZSDR_PS_CE_DV" multiJoinOrder="Outside In">
-    <viewAttributes>
-      <viewAttribute id="MANDT"/>
-      <viewAttribute id="MATNR"/>
-      <viewAttribute id="BRAND_ID"/>
-      <viewAttribute id="WERKS"/>
-      <viewAttribute id="LGORT"/>
-      <viewAttribute id="LABST" aggregationType="sum"/>
-      <viewAttribute id="ERSDA"/>
-      <viewAttribute id="SPRAS"/>
-      <viewAttribute id="MAKTX"/>
-      <viewAttribute id="MAKTG"/>
-      <viewAttribute id="MRART"/>
-      <viewAttribute id="MEINE"/>
-      <viewAttribute id="EAN11"/>
-      <viewAttribute id="VKORG"/>
-      <viewAttribute hidden="true" id="JOIN$MATNR$MATNR"/>
-    </viewAttributes>
-    <calculatedViewAttributes/>
-    <input node="MARA_MARD_MAKT_1">
-      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="BRAND_ID" source="BRAND_ID"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="LABST" source="LABST"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ERSDA" source="ERSDA"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MRART" source="MRART"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MEINE" source="MEINE"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
-    </input>
-    <input node="MAKT">
-      <mapping xsi:type="Calculation:AttributeMapping" target="MAKTX" source="MAKTX"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MAKTG" source="MAKTG"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
-    </input>
-    <joinAttribute name="JOIN$MATNR$MATNR"/>
-  </calculationView>
-  <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinType="leftOuter">
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" joinType="leftOuter" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="MATNR"/>
       <viewAttribute id="BRAND_ID"/>
@@ -220,7 +190,7 @@ else &quot;MEINE&quot;
 END</formula>
       </calculatedViewAttribute>
     </calculatedViewAttributes>
-    <input node="MARA_MARD_MAKT_2">
+    <input node="MARA_MARD_MAKT">
       <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="BRAND_ID" source="BRAND_ID"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
@@ -240,6 +210,7 @@ END</formula>
       <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
     </input>
+    <filter>&quot;MATNR&quot; is not null</filter>
     <joinAttribute name="JOIN$MATNR$MATNR"/>
   </calculationView>
 </calculationViews>
@@ -330,10 +301,10 @@ END</formula>
       <upperLeftCorner x="351" y="217"/>
       <rectangleSize height="30" width="160"/>
     </shape>
-    <shape modelObjectName="MARA_MARD_MAKT_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="MARA_MARD_MAKT" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="250"/>
-    </shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape>
+    </shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape><shape><upperLeftCorner/><rectangleSize/></shape>
     <shape modelObjectName="Join_4" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="620" y="30"/>
       <rectangleSize width="250"/>
@@ -349,10 +320,6 @@ END</formula>
     <shape modelObjectName="ZSDR_PS_CE_DV" modelObjectNameSpace="MARA_MARD_MAKT" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MARA_MARD_MAKT">
       <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="166"/>
-    </shape>
-    <shape modelObjectName="Projection_1" modelObjectNameSpace="MARA_MARD_MAKT" modelObjectType="JoinNodeInput" multiJoinViewNodeName="MARA_MARD_MAKT">
-      <upperLeftCorner x="-193" y="52"/>
-      <rectangleSize width="136"/>
     </shape></shapes>
 </layout>
 </Calculation:scenario>

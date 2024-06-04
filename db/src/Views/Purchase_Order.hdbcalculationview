@@ -2,6 +2,13 @@
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="Purchase_Order" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
 <descriptions defaultDescription="Purchase_Order.hdbcalculationview"/>
 <localVariables>
+  <variable id="IP_WERKS" parameter="true">
+    <descriptions defaultDescription=" "/>
+    <variableProperties datatype="NVARCHAR" length="4">
+      <valueDomain type="empty"/>
+      <selection/>
+    </variableProperties>
+  </variable>
   <variable id="IP_SUPP_WERKS" parameter="true">
     <descriptions defaultDescription=" "/>
     <variableProperties datatype="NVARCHAR" length="4">
@@ -32,6 +39,10 @@
   <mapping xsi:type="Variable:VariableMapping" dataSource="ZSDR_TF_PO_CE">
     <targetVariable name="IP_SUPP_VEND" resourceUri="ZSDR_TF_PO_CE"/>
     <localVariable>IP_SUPP_VEND</localVariable>
+  </mapping>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="ZSDR_TF_PO_CE">
+    <targetVariable name="IP_WERKS" resourceUri="ZSDR_TF_PO_CE"/>
+    <localVariable>IP_WERKS</localVariable>
   </mapping>
 </variableMappings>
 <dataSources>
