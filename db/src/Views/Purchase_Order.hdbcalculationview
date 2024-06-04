@@ -20,7 +20,7 @@
     <descriptions defaultDescription=""/>
     <variableProperties datatype="NVARCHAR" length="18" mandatory="false">
       <valueDomain type="empty"/>
-      <selection multiLine="false" type="SingleValue"/>
+      <selection multiLine="true" type="SingleValue"/>
     </variableProperties>
   </variable>
 </localVariables>
@@ -55,7 +55,7 @@
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="ZSDR_TF_PO_CE"/>
-    <filter>'$$IP_BRAND_ID$$'=&quot;BRAND_ID&quot;</filter>
+    <filter>&quot;BRAND_ID&quot; in ($$IP_BRAND_ID$$)</filter>
   </calculationView>
 </calculationViews>
 <logicalModel id="Projection_1">
