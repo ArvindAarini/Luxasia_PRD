@@ -246,7 +246,7 @@ entity Product_StorageUnit(IP_WERKS : String(4), IP_LGORT : String(4)) {
 @cds.persistence.exists
 entity Purchase_Order(IP_WERKS : String(4),IP_SUPP_WERKS : String(4), IP_SUPP_VEND : String(20), IP_BRAND_ID : String(18)) {
 key ARTICLENO    : String(18);
-    STLOC        : String(4);
+key STLOC        : String(4);
     ARTICLEDESC  : String(40);
     STOREID      : String(4);
     UOM          : String(3);
