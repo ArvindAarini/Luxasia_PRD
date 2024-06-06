@@ -3,7 +3,7 @@
   "src/gen/**/*.hdbindex",
   "src/gen/**/*.hdbconstraint",
   "src/Views/**/*.hdbcalculationview",
-  "src/**/*.hdbprocedure",
+  "src/Procedures/**/*.hdbprocedure",
   "src/JOBS/**/*.hdbschedulerjob",
   "src/Functions/**/*.hdbfunction"
 ]
