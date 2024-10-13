@@ -10,16 +10,13 @@
   ],
   "role-templates": [
     {
-      "name": "Token_Exchange",
+      "name": "Luxasia_CAP_PR_Auth",
       "description": "UAA",
       "scope-references": [
         "uaa.user"
       ]
     }
   ],
-  "oauth2-configuration": {
-      "redirect-uris": [
-          "https://*.applicationstudio.cloud.sap/**"
-      ]
-  }
+  "attributes":[]
+  
 }

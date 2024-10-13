@@ -23,7 +23,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: Luxasia_CAP_PR_HDI
-      - name: Luxasia_CAP_PR_XSUAA
+      - name: Luxasia_CAP_PR_Auth
 
   - name: Luxasia_CAP_PR-db-deployer
     type: hdb
@@ -36,6 +36,22 @@ modules:
            TARGET_CONTAINER: ~{hdi-service-name}
       - name: UPS_Luxasia
 
+  - name: Luxasia_CAP_PR_AR
+    type: approuter.nodejs
+    path: app/router
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: Luxasia_CAP_PR_Auth
+
 resources:
   - name: Luxasia_CAP_PR_HDI
     type: com.sap.xs.hdi-container
@@ -47,12 +63,15 @@ resources:
     properties:
       hdi-service-name: ${service-name}
 
-  - name: Luxasia_CAP_PR_XSUAA
+  - name: Luxasia_CAP_PR_Auth
     type: org.cloudfoundry.existing-service
     parameters:
       path: ./xs-security.json
       service-plan: application
       service: xsuaa
+      config:
+        xsappname: Luxasia_CAP_PR_Auth-${org}-${space}
+        tenant-mode: dedicated
 
   - name: UPS_Luxasia
     type: org.cloudfoundry.existing-service

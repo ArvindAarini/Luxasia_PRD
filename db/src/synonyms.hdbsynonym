@@ -63,5 +63,10 @@
     "target": {
       "object": "Purchase_Order"
     }
+  },
+  "CUSTOMER": {
+    "target": {
+      "object": "CV_Customer"
+    }
   }
 }

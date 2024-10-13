@@ -5,5 +5,10 @@
   "src/Views/**/*.hdbcalculationview",
   "src/Procedures/**/*.hdbprocedure",
   "src/JOBS/**/*.hdbschedulerjob",
-  "src/Functions/**/*.hdbfunction"
+  "src/Functions/**/*.hdbfunction" ,
+  "src/**/*.hdbvirtualtable",
+  "src/**/**/*.hdbvirtualtable",
+  "src/**/**/*.hdbflowgraph",
+  "src/**/**/*.hdbreptask",
+  "src/**/**/*.hdbtable"
 ]

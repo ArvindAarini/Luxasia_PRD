@@ -255,3 +255,14 @@ key STLOC        : String(4);
     ARTICLETYPE  : String(4);
     AVAILABLEQTY : Decimal(13, 3);
 }
+
+@cds.persistence.calcview
+@cds.persistence.exists
+entity Customer {
+    CUSTOMERNO     : String(10);
+    FIRSTNAME     : String(40);
+    LASTNAME      : String(40);
+    EMAIL      : String(241);
+    TEL1NUMBER       : String(16);
+    MARKETCONSENT : String(3);
+}
