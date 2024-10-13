@@ -259,10 +259,10 @@ key STLOC        : String(4);
 @cds.persistence.calcview
 @cds.persistence.exists
 entity Customer {
-    ADDRNUMBER     : String(10);
+    CUSTOMERNO     : String(10);
     FIRSTNAME     : String(40);
     LASTNAME      : String(40);
-    E_MAIL      : String(241);
-    TEL1_NUMBR       : String(16);
+    EMAIL      : String(241);
+    TEL1NUMBER       : String(16);
     MARKETCONSENT : String(3);
 }

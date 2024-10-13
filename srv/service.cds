@@ -4,7 +4,7 @@ using Brands as _Brands from '../db/data-model';
 using Product_Cost from '../db/data-model';
 using Product_StorageUnit from '../db/data-model';
 using Purchase_Order from '../db/data-model';
-// using Customer as Customers from '../db/data-model';
+using Customer as Customers from '../db/data-model';
 
 @requires: 'authenticated-user'
 
@@ -44,7 +44,7 @@ service LuxasiaSB @(path: '/luxasia/oDataV4') {
             *
         };
     
-    // @readonly
-    // entity  Customer as projection on Customers;
+    @readonly
+    entity  Customer as projection on Customers;
 
 }
