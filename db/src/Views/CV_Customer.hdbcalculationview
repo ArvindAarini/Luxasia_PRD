@@ -25,6 +25,8 @@
       <viewAttribute id="TITLE"/>
       <viewAttribute id="NAME1"/>
       <viewAttribute id="NAME2"/>
+    
+      <viewAttribute id="TEL_NUMBER"/>
     </viewAttributes>
     <calculatedViewAttributes/>
     <input node="ZSDR_ADRC"/>
@@ -53,6 +55,7 @@
       <viewAttribute id="LASTNAME"/>
       <viewAttribute id="E_MAIL"/>
       <viewAttribute id="ADDRNUMBER"/>
+      <viewAttribute id="TEL1NUMBER"/>
       <viewAttribute hidden="true" id="JOIN$ADDRNUMBER$ADDRNUMBER"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -60,6 +63,7 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="NAME1"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="NAME2"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEL1NUMBER" source="TEL_NUMBER"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRNUMBER$ADDRNUMBER" source="ADDRNUMBER"/>
     </input>
     <input node="ADR6">
@@ -70,11 +74,12 @@
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_1_2" joinType="inner" multiJoinNode="Join_1" multiJoinCentralTable="KNA1" multiJoinOrder="Outside In">
     <viewAttributes>
-      <viewAttribute id="CUSTOMERNO"/>
       <viewAttribute id="FIRSTNAME"/>
       <viewAttribute id="LASTNAME"/>
       <viewAttribute id="E_MAIL"/>
+      <viewAttribute id="ADDRNUMBER"/>
       <viewAttribute id="TEL1NUMBER"/>
+      <viewAttribute id="CUSTOMERNO"/>
       <viewAttribute id="MARKETCONSENT"/>
       <viewAttribute hidden="true" id="JOIN$ADDRNUMBER$KUNNR"/>
     </viewAttributes>
@@ -83,11 +88,12 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="FIRSTNAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="LASTNAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="E_MAIL" source="E_MAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEL1NUMBER" source="TEL1NUMBER"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRNUMBER$KUNNR" source="ADDRNUMBER"/>
     </input>
     <input node="KNA1">
       <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERNO" source="KUNNR"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="TEL1NUMBER" source="TELF1"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="MARKETCONSENT" source="KATR8"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRNUMBER$KUNNR" source="KUNNR"/>
     </input>
@@ -139,28 +145,28 @@
       <upperLeftCorner x="362" y="317"/>
       <rectangleSize height="30" width="160"/>
     </shape>
+    <shape expanded="true" modelObjectName="KNA1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-146" y="317"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
   
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="93" y="198"/>
       <rectangleSize height="30" width="160"/>
     </shape>
+    <shape modelObjectName="KNA1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
+      <upperLeftCorner x="9" y="33"/>
+      <rectangleSize width="125"/>
+    </shape>
     <shape modelObjectName="ADRC" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
       <upperLeftCorner x="219" y="30"/>
-      <rectangleSize width="164.8369140625"/>
+      <rectangleSize width="164"/>
     </shape>
     <shape modelObjectName="ADR6" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
       <upperLeftCorner x="445" y="33"/>
-      <rectangleSize width="164.8369140625"/>
-    </shape>
-    <shape modelObjectName="KNA1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">
-      <upperLeftCorner x="9" y="33"/>
-      <rectangleSize width="125.1123046875"/>
-    </shape>
-    <shape expanded="true" modelObjectName="KNA1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="-146" y="317"/>
-      <rectangleSize height="30" width="160"/>
-    </shape>
-  </shapes>
+      <rectangleSize width="164"/>
+    </shape></shapes>
 </layout>
 </Calculation:scenario>
