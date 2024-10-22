@@ -68,5 +68,20 @@
     "target": {
       "object": "CV_Customer"
     }
+  },
+  "STORES_KNA1": {
+    "target": {
+      "object": "KNA1"
+    }
+  },
+  "STORES_ADRC": {
+    "target": {
+      "object": "ZSDR_ADRC"
+    }
+  },
+  "STORES_ADR6": {
+    "target": {
+      "object": "ADR6"
+    }
   }
 }

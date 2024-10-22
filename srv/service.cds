@@ -21,6 +21,10 @@ service LuxasiaSB @(path: '/luxasia/oDataV4') {
     entity A073          as projection on ss.A073;
     entity KONP          as projection on ss.KONP;
     entity ZSDR_PS_CE_MVKE as projection on ss.ZSDR_PS_CE_MVKE;
+    entity ADRC  as projection on ss.ADRC;
+    entity KNA1  as projection on ss.KNA1;
+    entity ADR6  as projection on ss.ADR6;
+
 
     @readonly
     entity Brands        as projection on _Brands;
@@ -46,5 +50,20 @@ service LuxasiaSB @(path: '/luxasia/oDataV4') {
     
     @readonly
     entity  Customer as projection on Customers;
+
+    @readonly
+
+    action insert(kunnr : String,
+                  addrnumber : String,
+                  client : String,
+                  date_from : String,
+                  nation : String,
+                  name1 : String,
+                  name2 : String,
+                  tel_number : String,
+                  persnumber : String,
+                  consumer : String,
+                  smtp_addr : String) returns Integer;
+
 
 }
