@@ -69,19 +69,24 @@
       "object": "CV_Customer"
     }
   },
-  "STORES_KNA1": {
+  "CUSTOMER_V1": {
     "target": {
-      "object": "KNA1"
-    }
-  },
-  "STORES_ADRC": {
-    "target": {
-      "object": "ZSDR_ADRC"
-    }
-  },
-  "STORES_ADR6": {
-    "target": {
-      "object": "ADR6"
+      "object": "CV_Customer_V1"
     }
   }
+  // "STORES_KNA1": {
+  //   "target": {
+  //     "object": "KNA1"
+  //   }
+  // },
+  // "STORES_ADRC": {
+  //   "target": {
+  //     "object": "ZSDR_ADRC"
+  //   }
+  // },
+  // "STORES_ADR6": {
+  //   "target": {
+  //     "object": "ADR6"
+  //   }
+  // }
 }

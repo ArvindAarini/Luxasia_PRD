@@ -5,6 +5,7 @@ using Product_Cost from '../db/data-model';
 using Product_StorageUnit from '../db/data-model';
 using Purchase_Order from '../db/data-model';
 using Customer as Customers from '../db/data-model';
+using Customer_V1 as Customers_V1 from '../db/data-model';
 
 @requires: 'authenticated-user'
 
@@ -21,9 +22,9 @@ service LuxasiaSB @(path: '/luxasia/oDataV4') {
     entity A073          as projection on ss.A073;
     entity KONP          as projection on ss.KONP;
     entity ZSDR_PS_CE_MVKE as projection on ss.ZSDR_PS_CE_MVKE;
-    entity ADRC  as projection on ss.ADRC;
-    entity KNA1  as projection on ss.KNA1;
-    entity ADR6  as projection on ss.ADR6;
+    // entity ADRC  as projection on ss.ADRC;
+    // entity KNA1  as projection on ss.KNA1;
+    // entity ADR6  as projection on ss.ADR6;
 
 
     @readonly
@@ -52,18 +53,28 @@ service LuxasiaSB @(path: '/luxasia/oDataV4') {
     entity  Customer as projection on Customers;
 
     @readonly
+    entity Customer_V1 as projection on Customers_V1;
 
-    action insert(kunnr : String,
+    action insert(
+                  mandt:String,
+                  kunnr : String,
                   addrnumber : String,
+                  parnr:String,
+                  dob:String,
+                  marketcon:String,
                   client : String,
                   date_from : String,
                   nation : String,
                   name1 : String,
                   name2 : String,
                   tel_number : String,
+                  city:String,
+                  pcode:String,
+                  street:String,
                   persnumber : String,
                   consumer : String,
                   smtp_addr : String) returns Integer;
+
 
 
 }

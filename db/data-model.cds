@@ -197,47 +197,47 @@ entity ZSDR_PS_CE_MVKE {
     key VTWEG : String(2);
         VRKME : String(3)
 }
- @cds.persistence.exists
-    entity ADRC {
-        key CLIENT     : String(3);
-        key ADDRNUMBER : String(10);
-        key DATE_FROM  : String(8);
-        key NATION     : String(1);
-            DATE_TO    : String(8);
-            TITLE      : String(4);
-            NAME1      : String(40);
-            NAME2      : String(40);
-            TEL_NUMBER : String(30);
-    }
+//  @cds.persistence.exists
+//     entity ADRC {
+//         key CLIENT     : String(3);
+//         key ADDRNUMBER : String(10);
+//         key DATE_FROM  : String(8);
+//         key NATION     : String(1);
+//             DATE_TO    : String(8);
+//             TITLE      : String(4);
+//             NAME1      : String(40);
+//             NAME2      : String(40);
+//             TEL_NUMBER : String(30);
+//     }
 
-    @cds.persistence.exists
-    entity KNA1 {
-        key KUNNR : String(10);
-            TELF1 : String(16);
-            ADRNR : String(10);
-            KTOKD : String(4);
-            KATR8 : String(3);
-    }
+//     @cds.persistence.exists
+//     entity KNA1 {
+//         key KUNNR : String(10);
+//             TELF1 : String(16);
+//             ADRNR : String(10);
+//             KTOKD : String(4);
+//             KATR8 : String(3);
+//     }
 
-    @cds.persistence.exists
-    entity ADR6 {
-        key CLIENT     : String(3);
-        key ADDRNUMBER : String(10);
-        key PERSNUMBER : String(10);
-        key DATE_FROM  : String(8);
-        key CONSNUMBER : String(3);
-            FLGDEFAULT : String(1);
-            FLG_NOUSE  : String(1);
-            HOME_FLAG  : String(1);
-            SMTP_ADDR  : String(241);
-            SMTP_SRCH  : String(20);
-            DFT_RECEIV : String(1);
-            R3_USER    : String(1);
-            ENCODE     : String(1);
-            TNEF       : String(1);
-            VALID_FROM : String(14);
-            VALID_TO   : String(14);
-    }
+//     @cds.persistence.exists
+//     entity ADR6 {
+//         key CLIENT     : String(3);
+//         key ADDRNUMBER : String(10);
+//         key PERSNUMBER : String(10);
+//         key DATE_FROM  : String(8);
+//         key CONSNUMBER : String(3);
+//             FLGDEFAULT : String(1);
+//             FLG_NOUSE  : String(1);
+//             HOME_FLAG  : String(1);
+//             SMTP_ADDR  : String(241);
+//             SMTP_SRCH  : String(20);
+//             DFT_RECEIV : String(1);
+//             R3_USER    : String(1);
+//             ENCODE     : String(1);
+//             TNEF       : String(1);
+//             VALID_FROM : String(14);
+//             VALID_TO   : String(14);
+//     }
 }
 
 @cds.persistence.calcview
@@ -307,4 +307,19 @@ entity Customer {
     EMAIL      : String(241);
     TEL1NUMBER       : String(16);
     MARKETCONSENT : String(3);
+}
+
+@cds.persistence.calcview
+@cds.persistence.exists
+entity Customer_V1 {
+	CustomerNo: String(10);
+	Firstname: String(35);
+	Lastname: String(35);
+	Email: String(241);
+	Dob: String(8);
+	Tel1Number: String(30);
+	PostlCod1: String(10);
+	City: String(40);
+	Street: String(60);
+    Katr8 : String(3);
 }

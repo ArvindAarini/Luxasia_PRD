@@ -51,5 +51,21 @@
 ]
 }
 
-   
+###
+POST http://localhost:4004/luxasia/oDataV4/insert
+Content-Type: application/json
+
+{
+  "kunnr":"CD",
+  "addrnumber" : "123ADR", 
+  "name1": "Ashwin", 
+  "name2":"Shrimanwar",
+  "tel_number":"7766554499", 
+  "smtp_addr" :"Ash@email.com",
+  "marketcon": "Y",
+  "pcode": "000000",
+  "street": "singapore",
+  "tel_number": "345435344",
+  "dob":"00000000"
   
+}
