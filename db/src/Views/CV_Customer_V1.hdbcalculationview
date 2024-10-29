@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_Customer_V1" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
 <descriptions defaultDescription="CV_Customer_V1.hdbcalculationview"/>
-<localVariables/>
+<localVariables>
+  <variable id="IP_FNAME" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="35" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_LNAME" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="35" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_TEL_PHONE" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="30" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_EMAIL" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="241" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
 <variableMappings/>
 <dataSources>
   <DataSource id="ZSDR_ADRC">
@@ -16,7 +45,7 @@
 </dataSources>
 <snapshotProcedures/>
 <calculationViews>
-  <calculationView xsi:type="Calculation:ProjectionView" id="ADRC1">
+  <calculationView xsi:type="Calculation:ProjectionView" id="ADRC1" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="ADDRNUMBER"/>
       <viewAttribute id="DATE_FROM"/>
@@ -32,18 +61,31 @@
       <viewAttribute id="CITY1"/>
       <viewAttribute id="STREET"/>
     </viewAttributes>
-    <calculatedViewAttributes/>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_TEL_NUMBER" datatype="NVARCHAR" length="30" expressionLanguage="SQL">
+        <formula>case when '$$IP_TEL_PHONE$$' = '' THEN 'ALL' ELSE COALESCE('$$IP_TEL_PHONE$$','ALL') END</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
     <input node="ZSDR_ADRC"/>
+    <filter>'$$IP_TEL_PHONE$$'= &quot;TEL_NUMBER&quot; OR 
+&quot;CC_TEL_NUMBER&quot; = 'ALL'
+</filter>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="ADR6">
+  <calculationView xsi:type="Calculation:ProjectionView" id="ADR6" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="ADDRNUMBER"/>
       <viewAttribute id="SMTP_ADDR"/>
     </viewAttributes>
-    <calculatedViewAttributes/>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_EMAIL" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+        <formula>case when '$$IP_EMAIL$$' = '' THEN 'ALL' ELSE COALESCE('$$IP_EMAIL$$','ALL') END</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
     <input node="ADR6$$$$ADR6$$"/>
+    <filter>'$$IP_EMAIL$$'=&quot;SMTP_ADDR&quot; OR
+&quot;CC_EMAIL&quot;='ALL'</filter>
   </calculationView>
-  <calculationView xsi:type="Calculation:ProjectionView" id="KNA1">
+  <calculationView xsi:type="Calculation:ProjectionView" id="KNA1" filterExpressionLanguage="SQL">
     <viewAttributes>
       <viewAttribute id="KUNNR"/>
       <viewAttribute id="ADRNR"/>
@@ -52,8 +94,19 @@
       <viewAttribute id="NAME1"/>
       <viewAttribute id="GBDAT"/>
     </viewAttributes>
-    <calculatedViewAttributes/>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_LNAME" datatype="NVARCHAR" length="35" expressionLanguage="SQL">
+        <formula>case when '$$IP_LNAME$$' = '' THEN 'ALL' ELSE COALESCE('$$IP_LNAME$$','ALL') END</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_FNAME" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+        <formula>case when '$$IP_FNAME$$' = '' THEN 'ALL' ELSE COALESCE('$$IP_FNAME$$','ALL') END</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
     <input node="ZSDRCE_CS_DBV"/>
+    <filter>(('$$IP_FNAME$$'= &quot;NAMEV&quot;) OR &quot;CC_FNAME&quot; = 'ALL')
+AND
+(('$$IP_LNAME$$'= &quot;NAME1&quot;) OR &quot;CC_LNAME&quot; ='ALL' )
+</filter>
   </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="Join_1_1" joinType="leftOuter" multiJoinNode="Join_1" multiJoinCentralTable="KNA1" multiJoinOrder="Outside In">
     <viewAttributes>
@@ -63,6 +116,8 @@
       <viewAttribute id="CITY"/>
       <viewAttribute id="STREET"/>
       <viewAttribute id="ADDRNUMBER"/>
+      <viewAttribute id="CC_EMAIL"/>
+      <viewAttribute id="ADDRNUMBER_ADR6"/>
       <viewAttribute hidden="true" id="JOIN$ADDRNUMBER$ADDRNUMBER"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -76,6 +131,8 @@
     </input>
     <input node="ADR6">
       <mapping xsi:type="Calculation:AttributeMapping" target="E_MAIL" source="SMTP_ADDR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_EMAIL" source="CC_EMAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER_ADR6" source="ADDRNUMBER"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRNUMBER$ADDRNUMBER" source="ADDRNUMBER"/>
     </input>
     <joinAttribute name="JOIN$ADDRNUMBER$ADDRNUMBER"/>
@@ -93,6 +150,8 @@
       <viewAttribute id="LASTNAME"/>
       <viewAttribute id="DOB"/>
       <viewAttribute id="KATR8"/>
+      <viewAttribute id="CC_EMAIL"/>
+      <viewAttribute id="ADDRNUMBER_ADR6"/>
       <viewAttribute hidden="true" id="JOIN$ADRNR$ADDRNUMBER"/>
     </viewAttributes>
     <calculatedViewAttributes/>
@@ -111,54 +170,83 @@
       <mapping xsi:type="Calculation:AttributeMapping" target="CITY" source="CITY"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="STREET" source="STREET"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_EMAIL" source="CC_EMAIL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER_ADR6" source="ADDRNUMBER_ADR6"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADRNR$ADDRNUMBER" source="ADDRNUMBER"/>
     </input>
     <joinAttribute name="JOIN$ADRNR$ADDRNUMBER"/>
   </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="E_MAIL"/>
+      <viewAttribute id="TEL1_NUMBR"/>
+      <viewAttribute id="POSTLCOD1"/>
+      <viewAttribute id="CITY"/>
+      <viewAttribute id="STREET"/>
+      <viewAttribute id="ADDRNUMBER"/>
+      <viewAttribute id="CUSTOMERNO"/>
+      <viewAttribute id="FIRSTNAME"/>
+      <viewAttribute id="LASTNAME"/>
+      <viewAttribute id="DOB"/>
+      <viewAttribute id="KATR8"/>
+      <viewAttribute id="CC_EMAIL"/>
+      <viewAttribute id="ADDRNUMBER_ADR6"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_ADDRNUM" datatype="NVARCHAR" length="10" expressionLanguage="SQL">
+        <formula>CASE WHEN '$$IP_EMAIL$$' ='' THEN &quot;ADDRNUMBER&quot; 
+WHEN '$$IP_EMAIL$$' != '' THEN COALESCE(&quot;ADDRNUMBER_ADR6&quot;,'NA')
+END
+</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_1_2"/>
+    <filter>&quot;ADDRNUMBER&quot; = &quot;CC_ADDRNUM&quot;</filter>
+  </calculationView>
 </calculationViews>
-<logicalModel id="Join_1_2">
+<logicalModel id="Projection_1">
   <attributes>
     <attribute id="CUSTOMERNO" order="1" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="KUNNR"/>
-      <keyMapping columnObjectName="Join_1_2" columnName="CUSTOMERNO"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CUSTOMERNO"/>
     </attribute>
     <attribute id="FIRSTNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="NAMEV"/>
-      <keyMapping columnObjectName="Join_1_2" columnName="FIRSTNAME"/>
+      <keyMapping columnObjectName="Projection_1" columnName="FIRSTNAME"/>
     </attribute>
     <attribute id="LASTNAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="NAME1"/>
-      <keyMapping columnObjectName="Join_1_2" columnName="LASTNAME"/>
+      <keyMapping columnObjectName="Projection_1" columnName="LASTNAME"/>
     </attribute>
     <attribute id="EMAIL" order="4" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="E_MAIL"/>
-      <keyMapping columnObjectName="Join_1_2" columnName="E_MAIL"/>
+      <keyMapping columnObjectName="Projection_1" columnName="E_MAIL"/>
     </attribute>
     <attribute id="DOB" order="5" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="GBDAT"/>
-      <keyMapping columnObjectName="Join_1_2" columnName="DOB"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DOB"/>
     </attribute>
     <attribute id="TEL1NUMBER" order="6" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="TEL1_NUMBR"/>
-      <keyMapping columnObjectName="Join_1_2" columnName="TEL1_NUMBR"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TEL1_NUMBR"/>
     </attribute>
     <attribute id="POSTLCOD1" order="7" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="POST_CODE1"/>
-      <keyMapping columnObjectName="Join_1_2" columnName="POSTLCOD1"/>
+      <keyMapping columnObjectName="Projection_1" columnName="POSTLCOD1"/>
     </attribute>
     <attribute id="CITY" order="8" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CITY1"/>
-      <keyMapping columnObjectName="Join_1_2" columnName="CITY"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CITY"/>
     </attribute>
     <attribute id="STREET" order="9" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="STREET"/>
-      <keyMapping columnObjectName="Join_1_2" columnName="STREET"/>
+      <keyMapping columnObjectName="Projection_1" columnName="STREET"/>
     </attribute>
   
     <attribute id="KATR8" order="10" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="MARKET_CONSENT"/>
   
-      <keyMapping columnObjectName="Join_1_2" columnName="KATR8"/>
+      <keyMapping columnObjectName="Projection_1" columnName="KATR8"/>
   
     </attribute>
   </attributes>
@@ -170,25 +258,32 @@
 <layout>
   <shapes>
     <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
-      <upperLeftCorner x="40" y="85"/>
+      <upperLeftCorner x="379" y="112"/>
+    
+      <rectangleSize width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="ADRC1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="93" y="317"/>
+      <upperLeftCorner x="92" y="496"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="ADR6" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="362" y="317"/>
+      <upperLeftCorner x="302" y="496"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape expanded="true" modelObjectName="KNA1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="-149" y="317"/>
+      <upperLeftCorner x="512" y="496"/>
       <rectangleSize height="30" width="160"/>
     </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="379" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
   
   
   
     <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
-      <upperLeftCorner x="93" y="198"/>
+      <upperLeftCorner x="302" y="341"/>
       <rectangleSize height="30" width="160"/>
     </shape>
     <shape modelObjectName="KNA1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput" multiJoinViewNodeName="Join_1">

@@ -73,7 +73,13 @@
     "target": {
       "object": "CV_Customer_V1"
     }
-  }
+  },
+    "CV_CUSTOMER_V1": {
+      "target": {
+        "object": "CV_Customer_V1"
+      }
+    }
+    
   // "STORES_KNA1": {
   //   "target": {
   //     "object": "KNA1"
