@@ -62,8 +62,8 @@
     <input node="ADRC">
       <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="NAME1"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="NAME2"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TEL1NUMBER" source="TEL_NUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRNUMBER$ADDRNUMBER" source="ADDRNUMBER"/>
     </input>
     <input node="ADR6">
@@ -81,23 +81,23 @@
       <viewAttribute id="TEL1NUMBER"/>
       <viewAttribute id="CUSTOMERNO"/>
       <viewAttribute id="MARKETCONSENT"/>
-      <viewAttribute hidden="true" id="JOIN$ADDRNUMBER$KUNNR"/>
+      <viewAttribute hidden="true" id="JOIN$ADRNR$ADDRNUMBER"/>
     </viewAttributes>
     <calculatedViewAttributes/>
+    <input node="KNA1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERNO" source="KUNNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MARKETCONSENT" source="KATR8"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADRNR$ADDRNUMBER" source="ADRNR"/>
+    </input>
     <input node="Join_1_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="FIRSTNAME" source="FIRSTNAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="LASTNAME" source="LASTNAME"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="E_MAIL" source="E_MAIL"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="TEL1NUMBER" source="TEL1NUMBER"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRNUMBER$KUNNR" source="ADDRNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADRNR$ADDRNUMBER" source="ADDRNUMBER"/>
     </input>
-    <input node="KNA1">
-      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTOMERNO" source="KUNNR"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="MARKETCONSENT" source="KATR8"/>
-      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADDRNUMBER$KUNNR" source="KUNNR"/>
-    </input>
-    <joinAttribute name="JOIN$ADDRNUMBER$KUNNR"/>
+    <joinAttribute name="JOIN$ADRNR$ADDRNUMBER"/>
   </calculationView>
 </calculationViews>
 <logicalModel id="Join_1_2">
@@ -125,6 +125,11 @@
     <attribute id="MARKETCONSENT" order="6" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="KATR8"/>
       <keyMapping columnObjectName="Join_1_2" columnName="MARKETCONSENT"/>
+    </attribute>
+  
+    <attribute id="ADDRNUMBER" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ADDRNUMBER"/>
+      <keyMapping columnObjectName="Join_1_2" columnName="ADDRNUMBER"/>
     </attribute>
   </attributes>
   <calculatedAttributes/>

@@ -5,6 +5,7 @@ using Product_Cost from '../db/data-model';
 using Product_StorageUnit from '../db/data-model';
 using Purchase_Order from '../db/data-model';
 using Customer as Customers from '../db/data-model';
+using CV_Customer_V1 from '../db/data-model';
 
 @requires: 'authenticated-user'
 
@@ -21,6 +22,10 @@ service LuxasiaSB @(path: '/luxasia/oDataV4') {
     entity A073          as projection on ss.A073;
     entity KONP          as projection on ss.KONP;
     entity ZSDR_PS_CE_MVKE as projection on ss.ZSDR_PS_CE_MVKE;
+    // entity ADRC  as projection on ss.ADRC;
+    // entity KNA1  as projection on ss.KNA1;
+    // entity ADR6  as projection on ss.ADR6;
+
 
     @readonly
     entity Brands        as projection on _Brands;
@@ -46,5 +51,35 @@ service LuxasiaSB @(path: '/luxasia/oDataV4') {
     
     @readonly
     entity  Customer as projection on Customers;
+
+    @readonly
+    entity CustomerV1 (IP_FNAME : String(35), IP_LNAME : String(35), IP_EMAIL : String(241), IP_TEL_PHONE : String(30)) as 
+        select from CV_Customer_V1 (
+            IP_FNAME: :IP_FNAME, IP_LNAME: :IP_LNAME, IP_EMAIL: :IP_EMAIL, IP_TEL_PHONE: :IP_TEL_PHONE
+        ) {
+            *
+        };
+
+    action insert(
+                  mandt:String,
+                  kunnr : String,
+                  addrnumber : String,
+                  parnr:String,
+                  dob:String,
+                  marketcon:String,
+                  client : String,
+                  date_from : String,
+                  nation : String,
+                  name1 : String,
+                  name2 : String,
+                  tel_number : String,
+                  city:String,
+                  pcode:String,
+                  street:String,
+                  persnumber : String,
+                  consumer : String,
+                  smtp_addr : String) returns Integer;
+
+
 
 }
